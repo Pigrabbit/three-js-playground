@@ -1,7 +1,7 @@
 import * as THREE from '../node_modules/three/build/three.module.js'
 
 let camera, scene, renderer, cube
-let step = 0.05
+let step = 0.2
 
 function buildCube() {
   let geometry = new THREE.BoxGeometry(1, 1, 1)
@@ -34,12 +34,13 @@ function init() {
   document.body.appendChild(renderer.domElement)
 }
 
-function mainLoop() {
-  cube.position.x += step
+function rotateCubeY() {
+  cube.rotation.y -= step
+}
 
-  if (cube.position.x <= -3 || cube.position.x >= 3) {
-    step *= -1
-  }
+function mainLoop() {
+  rotateCubeY();
+
   renderer.render(scene, camera)
   requestAnimationFrame(mainLoop)
 }
