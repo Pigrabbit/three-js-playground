@@ -23,10 +23,14 @@ function init() {
 
   camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 1000)
   camera.position.z = 8
+  camera.position.x = 1
   camera.position.y = 1
 
   buildCube()
   buildEdge()
+
+  const axes = new THREE.AxesHelper(5)
+  scene.add(axes)
 
   renderer = new THREE.WebGLRenderer()
   renderer.setSize(window.innerWidth, window.innerHeight)
