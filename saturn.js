@@ -1,13 +1,14 @@
 import * as THREE from '../node_modules/three/build/three.module.js'
 
-let camera, scene, renderer
-let step = 0.01
+let camera, scene, renderer, planet
+let planetRings = []
+let step = 0.2
 
 function createPlanet({ radius, color, widthSegments = 30, heightSegments = 30 }) {
   const geometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments)
   const material = new THREE.MeshBasicMaterial({ color, wireframe: true })
-  const sphere = new THREE.Mesh(geometry, material)
-  scene.add(sphere)
+  planet = new THREE.Mesh(geometry, material)
+  scene.add(planet)
 }
 
 function createRing({ radius, tube, color, radialSegments = 2, tubularSegments = 100 }) {
@@ -17,6 +18,7 @@ function createRing({ radius, tube, color, radialSegments = 2, tubularSegments =
   torus.rotation.x -= 30
   torus.rotation.y += 60
   scene.add(torus)
+  planetRings.push(torus)
 }
 
 function createSaturn({ planetRadius, planetColor, rings }) {
@@ -60,7 +62,14 @@ function init() {
 }
 
 function mainLoop() {
+  if (Math.abs(planet.position.y) > 10) {
+    step = -1 * step
+  }
+  planet.position.y -= step
+  planetRings.forEach(ring => ring.position.y -= step)
+
   renderer.render(scene, camera)
+  requestAnimationFrame(mainLoop)
 }
 
 init()
