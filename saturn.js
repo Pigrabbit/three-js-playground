@@ -6,7 +6,7 @@ let step = 0.2
 
 function createPlanet({ radius, color, widthSegments = 30, heightSegments = 30 }) {
   const geometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments)
-  const material = new THREE.MeshBasicMaterial({ color, wireframe: true })
+  const material = new THREE.MeshBasicMaterial({ color })
   planet = new THREE.Mesh(geometry, material)
   scene.add(planet)
 }
