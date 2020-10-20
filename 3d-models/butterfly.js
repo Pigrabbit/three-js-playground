@@ -15,7 +15,6 @@ function createButterfly() {
 
   const material = new THREE.MeshBasicMaterial({
     color: 0x00a2f0,
-    wireframe: true,
     side: THREE.DoubleSide,
   })
 
