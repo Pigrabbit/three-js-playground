@@ -1,7 +1,7 @@
 import * as THREE from '../node_modules/three/build/three.module.js'
 
 
-let camera, scene, renderer, cube, normals
+let camera, scene, renderer, cube
 let step = 0.02
 
 function createGeometry() {
